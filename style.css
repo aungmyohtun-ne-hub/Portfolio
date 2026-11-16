@@ -110,7 +110,7 @@ header {
 .terminal-prompt {
     color: var(--text-secondary);
     font-size: 1.05rem;
-    margin-bottom: 10px;
+    margin-bottom: 45px;
     display: inline-block;
     cursor: pointer;
     transition: color 0.3s ease;
@@ -430,5 +430,58 @@ footer {
     border-color: #3b82f6 !important;         /* Mouse တင်ရင် ဘောင်အပြာရောင်ပြောင်းမည် */
     background-color: rgba(59, 130, 246, 0.1) !important; /* နောက်ခံအပြာရောင် ဖျော့ဖျော့ပေါ်မည် */
     color: #3b82f6 !important;
+}
+/* Icon ကို ထိလိုက်မှ စာသားပေါ်စေရန် အခြေခံနေရာသတ်မှတ်ခြင်း */
+.logo {
+    position: relative;
+    display: inline-block;
+}
+
+/* ပုံမှန်အချိန်တွင် ဖျောက်ထားမည့် အစိမ်းရောင် စာသားဘောက်စ် */
+.logo::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 140%;                      /* Icon အောက်နားတွင် ပေါ်စေရန် */
+    left: 0;
+    background-color: #0d1117;      /* နောက်ခံအမည်းရောင် */
+    color: #22c55e;                 /* စာသား အစိမ်းရောင် (Green) */
+    border: 1px solid #22c55e;      /* ဘောင် အစိမ်းရောင် */
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-family: monospace;
+    white-space: nowrap;
+    
+    /* Mouse မထိခင် ဖျောက်ထားရန် */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Logo Icon ကို Mouse နဲ့ ထိလိုက် (Hover လုပ်လိုက်) မှ စာသားထွက်လာစေရန် */
+.logo:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* စာကြောင်းတစ်ခုလုံး (.hero-title) ပေါ် Mouse တင်ရန် */
+.hero-title {
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Aung Myo Htun ၏ မူလပုံစံနှင့် ပြောင်းလဲမည့် အမြန်နှုန်း */
+.my-name {
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+    transform-origin: left center;
+}
+
+/* စာကြောင်းတစ်ခုလုံး (.hero-title) ကို ထိလိုက်တာနဲ့ .my-name ကြီးပြီး အပြာရောင်ပြောင်းရန် */
+.hero-title:hover .my-name {
+    color: #ef4444;          /* ကြည်လင်တောက်ပသော အနီရောင် (Modern Red) */
+    transform: scale(1.08);
 }
     </style>

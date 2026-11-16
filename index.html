@@ -12,8 +12,8 @@
 
     <header>
         <nav class="navbar">
-            <a href="index.html" class="logo" title="There's no place like ::1">
-            <i class="fa-solid fa-network-wired"></i>
+            <a href="index.html" class="logo" data-tooltip="There's no place like ::1">
+                <i class="fa-solid fa-network-wired"></i>
             </a>
             <button class="menu-toggle" id="menuToggle">☰</button>
             <ul class="nav-links" id="navLinks">
@@ -28,7 +28,9 @@
         <section class="hero">
             <div>
                 <p class="terminal-prompt">$ show ip interface brief | include up</p>
-                <h1>Hi, I'm Aung Myo Htun</h1>
+                <h1 class="hero-title">
+                    <span class="hi-text">Hi, I'm</span> <span class="my-name">Aung Myo Htun</span>
+                </h1>
                 <p>
                     A dedicated <strong>Network Engineer</strong> experienced in designing, implementing, and troubleshooting reliable enterprise and ISP network infrastructures. Skilled in routing, switching, and access networks.
                 </p>
