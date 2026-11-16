@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Network Engineer Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo" title="There's no place like ::1">
+            <i class="fa-solid fa-network-wired"></i>
+            </a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div>
+                <p class="terminal-prompt">$ show ip interface brief | include up</p>
+                <h1>Hi, I'm Aung Myo Htun</h1>
+                <p>
+                    A dedicated <strong>Network Engineer</strong> experienced in designing, implementing, and troubleshooting reliable enterprise and ISP network infrastructures. Skilled in routing, switching, and access networks.
+                </p>
+                <div class="btn-group">
+                    <a href="Aung_Myo_Htun_CV.pdf" download class="btn btn-outline-custom">
+                     Download CV <i class="fa-solid fa-download" style="margin-left: 6px;"></i>
+                    </a> 
+                    <a href="contact.html" class="btn btn-secondary">Contact Me</a>
+                </div>
+            </div>
+
+            <div class="hero-img-box">
+                <img src="Home My Photo.jpg" alt="Aung Myo Htun">
+            </div>
+        </section>
+
+        <h2 class="section-title">What I Do</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3>Core & Enterprise Networking</h3>
+                <p>Configuration and optimization of BGP, OSPF, VLANs, STP, and high-availability router/switch architectures.</p>
+            </div>
+            <div class="card">
+                <h3>ISP & Access Infrastructure</h3>
+                <p>Hands-on management of IGW, NAT, BNG/PPPoE servers, CGNAT, GPON OLT/ONU deployments, and traffic engineering.</p>
+            </div>
+            <div class="card">
+                <h3>Network Troubleshooting</h3>
+                <p>End-to-end Layer 1 to Layer 7 diagnostics, latency reduction, packet analysis, and incident resolution.</p>
+            </div>
+            <div class="card">
+                <h3>Automation & Scripting</h3>
+                <p>Writing Python scripts to automate repetitive CLI configurations, device monitoring, and network audits.</p>
+            </div>
+            <div class="card">
+                <h3>Project Team Lead Engineering</h3>
+                <p>Collaborated and negotiated with external project stakeholders and partners to align requirements, coordinate deployment phases, and ensure successful execution.</p>
+            </div> 
+            <div class="card">
+                <h3>Core Team Lead & Management</h3>
+                <p>Led core engineering operations involving technical management, executive reporting, and delivering specialized training sessions for teams.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Aung Myo Htun Portfolio</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
