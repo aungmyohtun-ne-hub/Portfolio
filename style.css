@@ -1,487 +1,1165 @@
-/* Global Reset & Terminal Style */
+/* --- Base Theme & V3 Variables --- */
 :root {
-    --bg-main: #0d1117;
-    --bg-card: #161b22;
-    --border-color: #30363d;
-    --text-primary: #e6edf3;
-    --text-secondary: #8b949e;
-    --accent-green: #3fb950;
-    --accent-blue: #58a6ff;
-    --btn-green: #238636;
-    --btn-green-hover: #2ea043;
+  --bg: #080e1a;
+  --panel: #111c2d;
+  --ink: #f4f7fc;
+  --muted: #a9bad0;
+  --line: #26384e;
+  --accent: #5eead4;
+  --blue: #93c5fd;
+  --shadow: 0 24px 80px #0003;
 }
 
+html[data-theme="light"] {
+  --bg: #f1f5f9;
+  --panel: #ffffff;
+  --ink: #15283d;
+  --muted: #506379;
+  --line: #d5e0eb;
+  --accent: #087d73;
+  --blue: #2459a6;
+  --shadow: 0 24px 80px #2342;
+}
+
+/* --- Global & Typography --- */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Lucida Console', Monaco, monospace;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 105px;
 }
 
 body {
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  margin: 0;
+  background: radial-gradient(ellipse at 75% 8%, #16324c50, transparent 36%), var(--bg);
+  color: var(--ink);
+  font: 16px/1.65 system-ui, -apple-system, Segoe UI, sans-serif;
 }
 
-/* Navigation Bar */
+html[data-theme="light"] body {
+  background: var(--bg);
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: auto;
+  padding: 0 28px;
+}
+
+/* --- Header & Navigation --- */
 header {
-    background-color: var(--bg-card);
-    border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  z-index: 20;
 }
 
-.navbar {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 1rem 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  min-height: 78px;
 }
 
-.logo {
-    font-size: 1.1rem;              /* Icon အရွယ်အစား */
-    color: #ffffff;                 /* မူလအခြေအနေတွင် အဖြူရောင်ဖြစ်မည် */
-    text-decoration: none;
-    transition: all 0.3s ease;      /* အရောင်ပြောင်းရာတွင် ညင်သာစေရန် */
-    display: inline-block;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink);
+  font-weight: 750;
+  letter-spacing: -0.03em;
 }
 
-.logo:hover {
-    color: #3b82f6;                 /* Mouse ထောက်လိုက်လျှင် အပြာရောင်ပြောင်းမည် */
-    transform: scale(1.1);          /* အနည်းငယ် ကြွတက်လာစေရန် (မလိုချင်ပါက ဤစာကြောင်း ဖြုတ်နိုင်သည်) */
+.mark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  background: var(--accent);
+  color: #08231f;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 850;
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 25px;
+.links {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  font-size: 14px;
 }
 
-.nav-links a {
-    color: var(--text-primary);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
+.links a {
+  color: var(--muted);
 }
 
-.nav-links a:hover, .nav-links a.active {
-    color: var(--accent-blue);
+.toggle,
+.filter {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  padding: 9px 14px;
+  border-radius: 9px;
 }
 
-.menu-toggle {
-    display: none;
-    background: none;
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
-    font-size: 1.3rem;
-    padding: 4px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* Main Content Container */
-.container {
-    max-width: 1000px;
-    width: 100%;
-    margin: 40px auto;
-    padding: 0 20px;
-    flex: 1;
-}
-
-/* Hero Section with Image */
+/* --- Hero Section --- */
 .hero {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 40px;
-    align-items: center;
-    padding: 50px 0;
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: 1.35fr 0.8fr;
+  gap: 65px;
+  align-items: center;
+  padding: 70px 0 55px;
 }
 
-/* Command line hover effect */
-.terminal-prompt {
-    color: var(--text-secondary);
-    font-size: 1.05rem;
-    margin-bottom: 45px;
-    display: inline-block;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.terminal-prompt:hover {
-    color: var(--accent-green);
+.eyebrow {
+  font: 700 13px/1.5 ui-monospace, monospace;
+  color: var(--accent);
+  letter-spacing: 0.05em;
 }
 
 .hero h1 {
-    font-size: 2.4rem;
-    margin-bottom: 15px;
-    color: #ffffff;
-    font-weight: bold;
+  font-size: clamp(44px, 6.5vw, 82px);
+  line-height: 1.02;
+  letter-spacing: -0.065em;
+  margin: 17px 0;
 }
 
-.hero p {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    margin-bottom: 25px;
+.role {
+  font-size: clamp(20px, 3vw, 29px);
+  color: var(--blue);
+  font-weight: 650;
+  letter-spacing: -0.03em;
 }
 
-.btn-group {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
+.lead {
+  color: var(--muted);
+  max-width: 630px;
+  font-size: 17px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 26px 0;
 }
 
 .btn {
-    padding: 10px 20px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.25s ease;
-    cursor: pointer;
-    border: none;
-    font-size: 0.9rem;
-    display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 19px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-weight: 700;
+  color: var(--ink);
 }
 
-.btn-primary {
-    background-color: var(--btn-green);
-    color: #ffffff;
+.primary {
+  background: var(--accent);
+  color: #08231f;
+  border-color: var(--accent);
 }
 
-.btn-primary:hover {
-    background-color: var(--btn-green-hover);
+.portrait {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 25px;
+  background: var(--panel);
+  padding: 13px;
+  box-shadow: var(--shadow);
+  margin: 0;
 }
 
-.btn-secondary {
-    background-color: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--accent-blue);
+.portrait img {
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+  object-position: center 32%;
+  display: block;
+  border-radius: 15px;
 }
 
-.btn-secondary:hover {
-    border-color: var(--accent-blue);
-    background-color: rgba(88, 166, 255, 0.1);
+.portrait figcaption {
+  padding: 13px 9px 3px;
+  color: var(--muted);
+  font-size: 13px;
 }
 
-/* Profile Image Box */
-.hero-img-box {
-    width: 100%;
-    height: 300px;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* --- Metrics Bar --- */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 16px;
+  margin: 0 0 32px;
 }
 
-.hero-img-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.metric {
+  padding: 23px 26px;
 }
 
-/* Section Headings & Cards */
-.section-title {
-    color: var(--accent-blue);
-    font-size: 1.5rem;
-    margin: 40px 0 20px 0;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border-color);
+.metric + .metric {
+  border-left: 1px solid var(--line);
 }
 
-.grid-2 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+.metric strong {
+  display: block;
+  font-size: 30px;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+}
+
+.metric span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* --- Sections, Cards & Grids --- */
+section.block {
+  padding: 62px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+h2 {
+  font-size: clamp(29px, 4vw, 43px);
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+  margin: 9px 0 23px;
+}
+
+h3 {
+  font-size: 19px;
+  line-height: 1.35;
+  margin: 8px 0 10px;
+}
+
+p {
+  margin: 8px 0 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .card {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 22px;
-    margin-bottom: 18px;
-    transition: border-color 0.2s;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+  overflow-wrap: anywhere;
 }
 
-.card:hover {
-    border-color: #484f58;
+.card p,
+.card li,
+.timeline p,
+.timeline li {
+  color: var(--muted);
+  font-size: 15px;
 }
 
-.card h3 {
-    color: #ffffff;
-    font-size: 1.15rem;
-    margin-bottom: 6px;
+.num {
+  font: 700 13px ui-monospace, monospace;
+  color: var(--accent);
 }
 
-.card .badge {
-    display: inline-block;
-    font-size: 0.85rem;
-    color: var(--accent-green);
-    margin-bottom: 10px;
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
 }
 
-.card p, .card ul {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
+.tag {
+  font-size: 12px;
+  border: 1px solid var(--line);
+  padding: 4px 9px;
+  border-radius: 6px;
+  color: var(--blue);
 }
 
-.card ul {
-    padding-left: 20px;
-    margin-top: 8px;
+/* --- Platforms & Vendors Strip --- */
+.brand-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
 }
 
-.card ul li {
-    margin-bottom: 5px;
+.vendor {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px 16px;
+  min-width: 0;
+  display: flex;
+  align-items: center; /* Logo နဲ့ စာသားများကို ဘေးချင်းကပ်လျက် သို့မဟုတ် အချိုးကျ ပြရန် */
+  gap: 14px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
-/* Skills Tags */
-.skills-container {
-    display: flex;
+.vendor:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+.vendor-icon {
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #14243a;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.vendor-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.vendor-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.vendor b {
+  font-size: 15px;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vendor small {
+  font-size: 11.5px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 980px) {
+  .brand-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .brand-strip {
+    grid-template-columns: 1fr;
+  }
+}
+/* --- Experience Timeline --- */
+.timeline {
+  border-left: 2px solid var(--line);
+  padding-left: 26px;
+  display: grid;
+  gap: 18px;
+}
+
+.job {
+  position: relative;
+}
+
+.job:before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border: 4px solid var(--bg);
+  border-radius: 50%;
+  position: absolute;
+  left: -38px;
+  top: 29px;
+}
+
+.date {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.company {
+  color: var(--blue);
+  font-weight: 650;
+}
+
+/* --- Experience Card Header & Clickable Transparent Company Logo --- */
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.company-logo {
+  flex: 0 0 54px;
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.95); /* နောက်ခံကို သပ်ရပ်သော အဖြူရောင်အကြည်ဖြင့် ခံပေးခြင်း */
+  border: 1px solid var(--line);
+  padding: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  text-decoration: none !important;
+}
+
+.company-logo:hover {
+  transform: translateY(-2px) scale(1.05);
+  border-color: var(--accent);
+  box-shadow: 0 8px 20px rgba(94, 234, 212, 0.2);
+}
+
+.company-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply; /* ပုံ၏ အဖြူရောင်နောက်ခံများကို အလိုအလျောက် ပျောက်ကွယ်စေရန် လုပ်ဆောင်ပေးသည် */
+}
+/* --- Unified Dense Project Grid & Expandable Cards --- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 20px;
+}
+
+.filter[aria-pressed="true"] {
+  background: var(--accent);
+  color: #08231f;
+  font-weight: 700;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+#project-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-flow: dense;
+  gap: 16px;
+  align-items: start;
+}
+
+#project-grid .card.featured {
+  grid-column: span 2;
+  background: linear-gradient(145deg, var(--panel), var(--bg));
+}
+
+#project-grid .card.featured:hover,
+#project-grid .card.featured.is-expanded {
+  grid-row: span 3;
+}
+
+#project-grid .card:not(.featured) {
+  grid-column: span 1;
+}
+
+#project-grid .card {
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+#project-grid .card:hover,
+#project-grid .card.is-expanded {
+  transform: translateY(-4px) scale(1.015);
+  border-color: var(--accent);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+
+.expand-hint {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  transition: opacity 0.25s ease;
+}
+
+.card:hover .expand-hint,
+.card.is-expanded .expand-hint {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.card-details {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.3s ease;
+}
+
+.card-details-inner {
+  overflow: hidden;
+}
+
+.card:hover .card-details,
+.card.is-expanded .card-details {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+/* --- Topology Diagrams --- */
+.project-visual {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.bng-topology {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 22px 16px;
+  margin: 18px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.topo-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.topo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.node {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 9px 12px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--panel);
+}
+
+.arrow {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.org {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.orgmark {
+  display: grid;
+  place-items: center;
+  flex: 0 0 46px;
+  height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  background: var(--bg);
+}
+
+.muted-note {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* --- Training & Contact --- */
+.training {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.training .card {
+  padding: 16px 20px;
+}
+
+.training h3 {
+  font-size: 16px;
+}
+
+.training p {
+  margin: 0;
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.contact .card a {
+  display: block;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+
+.foot {
+  padding: 30px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+}
+
+.skip:focus {
+  left: 12px;
+  top: 10px;
+  background: var(--panel);
+  padding: 10px;
+  z-index: 100;
+}
+
+/* --- Certifications & Training 2-Column Grid Layout --- */
+.training-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.training-grid .card .company a {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 650;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s ease;
+}
+
+.training-grid .card .company a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 780px) {
+  .training-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Workshops 3-Column Grid Layout --- */
+.workshop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* Responsive for Tablet & Mobile */
+@media (max-width: 980px) {
+  .workshop-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .workshop-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Training Timeline Links Styling --- */
+.timeline .job h3 a {
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.timeline .job h3 a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* --- Responsive Media Queries --- */
+@media (max-width: 980px) {
+  #project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  #project-grid .card.featured {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 850px) {
+  .nav {
     flex-wrap: wrap;
-    gap: 10px;
+    padding: 12px 0;
+    gap: 8px;
+  }
+  .links {
+    order: 3;
+    width: 100%;
+    gap: 16px;
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 48px 0 28px;
+  }
+  .portrait {
+    max-width: 450px;
+    margin: 0;
+  }
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .contact {
+    grid-template-columns: 1fr;
+  }
 }
 
-.skill-tag {
-    background-color: #21262d;
-    border: 1px solid var(--border-color);
-    color: var(--accent-blue);
-    padding: 7px 14px;
-    border-radius: 20px;
-    font-size: 0.85rem;
+@media (max-width: 780px) {
+  .brand-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .vendor {
+    padding: 15px;
+  }
 }
 
-/* Copy Alert Message */
-.copy-msg {
-    color: var(--accent-green);
-    font-size: 0.85rem;
-    margin-left: 10px;
+@media (max-width: 600px) {
+  .topo-row {
+    flex-direction: column;
+  }
+  .topo-row .arrow {
+    transform: rotate(90deg);
+  }
 }
 
-/* Footer */
-footer {
-    background-color: var(--bg-card);
-    border-top: 1px solid var(--border-color);
-    text-align: center;
-    padding: 20px;
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    margin-top: auto;
+@media (max-width: 560px) {
+  #project-grid {
+    grid-template-columns: 1fr;
+  }
+  #project-grid .card.featured,
+  #project-grid .card:not(.featured) {
+    grid-column: span 1;
+    grid-row: auto !important;
+  }
 }
 
-/* Responsive Mobile */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 62px;
-        left: 0;
-        width: 100%;
-        background-color: var(--bg-card);
-        padding: 20px;
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .nav-links.show {
-        display: flex;
-    }
-
-    .hero {
-        grid-template-columns: 1fr;
-    }
-}
-/* Contact Grid Layout: Top 3, Bottom 2 centered */
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.contact-grid .card {
-    margin-bottom: 0;
-}
-
-/* Make the last two cards span and center */
-.contact-grid .card:nth-child(4) {
-    grid-column: 1 / span 1.5; /* Custom alignment helper */
-}
-
-/* Simpler container query or wrapper for centered bottom items */
-.contact-bottom-row {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.contact-bottom-row .card {
-    width: calc(33.333% - 14px);
-    margin-bottom: 0;
-}
-
-@media (max-width: 768px) {
-    .contact-grid, .contact-bottom-row {
-        grid-template-columns: 1fr;
-        flex-direction: column;
-    }
-    .contact-bottom-row .card {
-        width: 100%;
-    }
-}
-<style>
-        .cards-top {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .cards-bottom {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .cards-bottom .card {
-            width: calc(33.333% - 14px);
-        }
-        .card h3 i {
-            margin-right: 8px;
-        }
-        /* Brand Icon Colors */
-        .fa-envelope { color: #ea4335; }
-        .fa-phone { color: var(--accent-green); }
-        .fa-linkedin { color: #0a66c2; }
-        .fa-viber { color: #7360f2; }
-        .fa-telegram { color: #229ed9; }
-
-        /* Centered & Compact Button Group to prevent wrapping */
-        .btn-group-center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            margin-top: 12px;
-            flex-wrap: nowrap; /* ခလုတ်များ အောက်သို့ မကျစေရန် */
-        }
-
-        /* Make buttons slightly compact so they fit side-by-side */
-        .btn-group-center .btn {
-            padding: 8px 12px;
-            font-size: 0.8rem;
-            white-space: nowrap;
-        }
-
-        @media (max-width: 768px) {
-            .cards-top, .cards-bottom {
-                grid-template-columns: 1fr;
-                display: flex;
-                flex-direction: column;
-            }
-            .cards-bottom .card {
-                width: 100%;
-            }
-        }
-        .btn-outline-custom {
-    background-color: #3b82f6; /* မူလအခြေအနေတွင် အပြာရောင် Solid Button ဖြစ်မည် */
-    border: 1px solid #3b82f6;
-    color: #ffffff;            /* စာသားအဖြူရောင်ဖြစ်မည် */
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-.btn-outline-custom:hover {
-    background-color: transparent; /* Mouse ထောက်လိုက်လျှင် နောက်ခံအရောင် ပျောက်သွားမည် (Contact Me လိုဖြစ်မည်) */
-    color: #3b82f6;                /* စာသားအပြာရောင်ပြောင်းမည် */
-    border-color: #3b82f6;         /* အပြာရောင်ဘောင် ပေါ်လာမည် */
-}
-/* Send Email, Call, Open Viber ခလုတ်များအတွက် */
-.btn-primary, .btn-email, .btn-call, .btn-viber {
-    background-color: #3b82f6 !important; /* အပြာရောင် */
-    border-color: #3b82f6 !important;
-    color: #ffffff !important;
-}
-
-/* Contact Card ထဲက ခလုတ်များအားလုံးကို LinkedIn/Telegram ပုံစံအတိုင်း ဖြစ်စေရန် */
-.contact-card .btn, 
-.btn-primary, .btn-email, .btn-call, .btn-viber {
-    background-color: transparent !important; /* နောက်ခံအရောင် လုံးဝမပါစေရန် */
-    border: 1px solid rgba(255, 255, 255, 0.2) !important; /* ပါးလွှာသော အဖြူရောင်ဘောင် */
-    color: #3b82f6 !important;                 /* စာသားအပြာရောင် */
-    transition: all 0.3s ease;
-}
-
-/* Mouse တင်လိုက်လျှင် (Hover လုပ်လျှင်) */
-.contact-card .btn:hover, 
-.btn-primary:hover, .btn-email:hover, .btn-call:hover, .btn-viber:hover {
-    border-color: #3b82f6 !important;         /* Mouse တင်ရင် ဘောင်အပြာရောင်ပြောင်းမည် */
-    background-color: rgba(59, 130, 246, 0.1) !important; /* နောက်ခံအပြာရောင် ဖျော့ဖျော့ပေါ်မည် */
-    color: #3b82f6 !important;
-}
-/* Icon ကို ထိလိုက်မှ စာသားပေါ်စေရန် အခြေခံနေရာသတ်မှတ်ခြင်း */
-.logo {
-    position: relative;
-    display: inline-block;
-}
-
-/* ပုံမှန်အချိန်တွင် ဖျောက်ထားမည့် အစိမ်းရောင် စာသားဘောက်စ် */
-.logo::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    top: 140%;                      /* Icon အောက်နားတွင် ပေါ်စေရန် */
-    left: 0;
-    background-color: #0d1117;      /* နောက်ခံအမည်းရောင် */
-    color: #22c55e;                 /* စာသား အစိမ်းရောင် (Green) */
-    border: 1px solid #22c55e;      /* ဘောင် အစိမ်းရောင် */
-    padding: 4px 10px;
-    border-radius: 5px;
+@media (max-width: 520px) {
+  .wrap {
+    padding: 0 18px;
+  }
+  .grid,
+  .training {
+    grid-template-columns: 1fr;
+  }
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+  .metric + .metric {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .metric {
+    padding: 15px 20px;
+  }
+  .portrait img {
+    height: 270px;
+  }
+  .links {
+    gap: 11px;
     font-size: 13px;
-    font-family: monospace;
-    white-space: nowrap;
-    
-    /* Mouse မထိခင် ဖျောက်ထားရန် */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease;
-    pointer-events: none;
-    z-index: 9999;
+  }
+  .hero h1 {
+    font-size: 50px;
+  }
+  .card {
+    padding: 19px;
+  }
+  section.block {
+    padding: 42px 0;
+  }
 }
 
-/* Logo Icon ကို Mouse နဲ့ ထိလိုက် (Hover လုပ်လိုက်) မှ စာသားထွက်လာစေရန် */
-.logo:hover::after {
-    opacity: 1;
-    visibility: visible;
+@media (max-width: 360px) {
+  .brand-strip {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* စာကြောင်းတစ်ခုလုံး (.hero-title) ပေါ် Mouse တင်ရန် */
-.hero-title {
-    cursor: pointer;
-    display: inline-block;
+/* --- Footer Center Alignment --- */
+footer {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Aung Myo Htun ၏ မူလပုံစံနှင့် ပြောင်းလဲမည့် အမြန်နှုန်း */
-.my-name {
-    display: inline-block;
-    transition: transform 0.3s ease, color 0.3s ease;
-    transform-origin: left center;
+/* --- Connect App Icons Grid Styling --- */
+.connect-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 500px;
 }
 
-/* စာကြောင်းတစ်ခုလုံး (.hero-title) ကို ထိလိုက်တာနဲ့ .my-name ကြီးပြီး အပြာရောင်ပြောင်းရန် */
-.hero-title:hover .my-name {
-    color: #ef4444;          /* ကြည်လင်တောက်ပသော အနီရောင် (Modern Red) */
-    transform: scale(1.08);
+.connect-icon-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-    </style>
+
+.connect-icon-card svg {
+  color: var(--accent);
+  transition: transform 0.25s ease;
+}
+
+.connect-icon-card span {
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.connect-icon-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  background: rgba(94, 234, 212, 0.05);
+  color: var(--accent);
+}
+
+.connect-icon-card:hover svg {
+  transform: scale(1.1);
+}
+
+/* Responsive for Mobile */
+@media (max-width: 600px) {
+  .connect-icons-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* --- Side-by-Side Connect Section Layout --- */
+.connect-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.connect-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 140px);
+  gap: 14px;
+}
+
+.connect-icon-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.connect-icon-card .icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(94, 234, 212, 0.1);
+  color: var(--accent);
+  flex-shrink: 0;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.connect-icon-card span {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.connect-icon-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  background: rgba(94, 234, 212, 0.04);
+}
+
+.connect-icon-card:hover .icon-wrap {
+  transform: scale(1.08);
+  background: var(--accent);
+  color: #0b131a;
+}
+
+/* Responsive for Mobile & Tablet */
+@media (max-width: 860px) {
+  .connect-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .connect-icons-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+}
+
+/* --- Larger Square App Icons Styling --- */
+.real-social-icons {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.app-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;  /* ဘောင်အကျယ်အဝန်းကို အနည်းငယ် ကြီးထားသည် */
+  height: 62px; /* ဘောင်အမြင့်ကို အနည်းငယ် ကြီးထားသည် */
+  border-radius: 14px; 
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.app-icon-link svg {
+  width: 34px;  /* အိုင်ကွန်အရွယ်အစားကို ပိုကြီးပေးထားသည် */
+  height: 34px; 
+  transition: transform 0.25s ease;
+}
+
+.app-icon-link:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent);
+}
+
+.app-icon-link:hover svg {
+  transform: scale(1.1);
+}
+
+/* --- Theme Toggle Button (Sun & Moon) --- */
+.theme-toggle-btn {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Default state (Dark mode active -> show Sun icon to switch to light) */
+.theme-toggle-btn .moon-icon {
+  display: none;
+}
+.theme-toggle-btn .sun-icon {
+  display: block;
+}
+
+/* When Light mode is active (body.light-mode) -> show Moon icon */
+body.light-mode .theme-toggle-btn .sun-icon {
+  display: none;
+}
+body.light-mode .theme-toggle-btn .moon-icon {
+  display: block;
+}
+
+/* --- Professional & Clean Light Mode Styling --- */
+body.light-mode {
+  --bg: #f8fafc;        /* နောက်ခံအရောင် (Clean Off-White) */
+  --panel: #ffffff;     /* ကတ်ပြားနောက်ခံ (Pure White) */
+  --ink: #0f172a;       /* ပင်မစာသားအရောင် (Dark Slate) */
+  --ink-muted: #475569; /* ဒုတိယစာသားအရောင် (Medium Slate) */
+  --line: #e2e8f0;      /* ဘောင်မျဉ်းအရောင် */
+  --accent: #2563eb;    /* အဓိက အလေးပေးအရောင် (Vibrant Blue) */
+}
+
+/* Light mode ဖွင့်ချိန်တွင် Background နှင့် Text များကို အပြည့်အဝ အစားထိုးခြင်း */
+body.light-mode {
+  background-color: var(--bg) !important;
+  color: var(--ink) !important;
+}
+
+/* Light mode ရှိ ကတ်ပြားများနှင့် ပန်နယ်များအတွက် ပိုမိုသပ်ရပ်သော ပုံစံ (မလိုဘဲ ပေါ်နေသော မျဉ်းများကို ဖယ်ရှားရန် border ကို ရှင်းလင်းခြင်း) */
+body.light-mode .block,
+body.light-mode .card,
+body.light-mode .panel {
+  background-color: var(--panel) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+}
+
+/* Header ကို သပ်ရပ်စေရန် */
+body.light-mode header {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+
+/* အပေါ်ဆုံးနှင့် အောက်ဆုံး ပေါ်နေတတ်သော မလိုလားအပ်သော မျဉ်းကြောင်းများကို ဖယ်ရှားရန် */
+body.light-mode hr,
+body.light-mode .section-divider {
+  border-color: var(--line) !important;
+}
+
+/* --- Custom Script Font Styling for Hello Friend! --- */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.brand-script {
+  font-family: 'Pacifico', cursive !important;
+  font-size: 1.35rem !important;
+  letter-spacing: 0.5px !important;
+  font-weight: normal !important;
+}
+
+/* --- ::1 Circular Badge Styling --- */
+.brand-router-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  color: var(--accent);
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: bold;
+  flex-shrink: 0;
+  background-color: var(--panel);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.brand-router-circle:hover {
+  transform: scale(1.05);
+}
+
+/* --- Brand & Home Link Styling --- */
+.brand.brand-script {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  text-decoration: none !important; /* အောက်ခံမျဉ်းကြောင်း လုံးဝမပါအောင် ကာကွယ်ခြင်း */
+  border-bottom: none !important;
+}
+
+.brand.brand-script:hover,
+.brand.brand-script:focus {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+/* --- ::1 Circular Badge Styling & Animation --- */
+.brand-router-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  color: var(--accent);
+  font-family: 'Courier New', Courier, monospace; /* ပိုမိုဆန်းသစ်သော tech font ပုံစံ */
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+  background-color: var(--panel);
+  /* အဝိုင်းလည်သွားစေရန်အတွက် transition ထည့်သွင်းခြင်း */
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease, color 0.3s ease;
+}
+
+/* မောက်စ်တင်လိုက်ပါက (သို့မဟုတ် ထိလိုက်ပါက) အဝိုင်း 360 ဒီဂရီ လည်သွားမည် */
+.brand.brand-script:hover .brand-router-circle {
+  transform: rotate(360deg);
+  background-color: var(--accent);
+  color: var(--panel);
+}
