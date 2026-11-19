@@ -1219,8 +1219,8 @@ body.light-mode .section-divider {
 
 /* --- Standalone Rotating Image Icon --- */
 .brand-custom-img {
-  width: 55px; /* လိုအပ်သလို အရွယ်အစား ပြောင်းနိုင်သည် */
-  height: 55px;
+  width: 52px; /* လိုအပ်သလို အရွယ်အစား ပြောင်းနိုင်သည် */
+  height: 52px;
   object-fit: contain;
   display: block;
   flex-shrink: 0;
