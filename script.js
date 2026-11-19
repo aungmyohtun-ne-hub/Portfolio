@@ -48,3 +48,220 @@ projectCards.forEach((card) => {
     card.classList.toggle('is-expanded');
   });
 });
+
+// --- Single-Open Accordion Behavior for Project Cards ---
+document.addEventListener("DOMContentLoaded", () => {
+  const projectCards = document.querySelectorAll("#project-grid .card");
+
+  const setCardState = (card, open) => {
+    card.classList.toggle("is-open", open);
+    const hint = card.querySelector(".expand-hint");
+    if (hint) {
+      hint.textContent = open
+        ? "Click to hide details ▴"
+        : "Click to view details ▾";
+    }
+  };
+
+  projectCards.forEach((card) => {
+    // အစပိုင်းတွင် အားလုံးကို ပိတ်ထားမည်
+    setCardState(card, false);
+
+    card.addEventListener("click", (event) => {
+      // Link သို့မဟုတ် Button ကို တိုက်ရိုက်နှိပ်ပါက Card toggle မလုပ်ပါ
+      if (event.target.closest("a, button")) return;
+
+      const willOpen = !card.classList.contains("is-open");
+
+      // တခြားပွင့်နေသော Card များကို အလိုလို ပြန်ပိတ်မည်
+      projectCards.forEach((otherCard) => {
+        if (otherCard !== card) {
+          setCardState(otherCard, false);
+        }
+      });
+
+      // လက်ရှိနှိပ်လိုက်သော Card ကို ဖွင့်/ပိတ် ပြုလုပ်မည်
+      setCardState(card, willOpen);
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const projectCards = document.querySelectorAll("#project-grid .card");
+
+  const setCardState = (card, open) => {
+    card.classList.toggle("is-open", open);
+    const hint = card.querySelector(".expand-hint");
+    if (hint) {
+      hint.textContent = open
+        ? "Click to hide details ▴"
+        : "Click to view details ▾";
+    }
+  };
+
+  projectCards.forEach((card) => {
+    setCardState(card, false);
+
+    card.addEventListener("click", (event) => {
+      if (event.target.closest("a, button")) return;
+
+      const willOpen = !card.classList.contains("is-open");
+
+      projectCards.forEach((otherCard) => {
+        if (otherCard !== card) {
+          setCardState(otherCard, false);
+        }
+      });
+
+      setCardState(card, willOpen);
+    });
+  });
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const filterButtons = document.querySelectorAll(".filters .filter[data-filter]");
+  const projectCards = document.querySelectorAll("#project-grid .card");
+
+  const setCardState = (card, open) => {
+    card.classList.toggle("is-open", open);
+    const hint = card.querySelector(".expand-hint");
+    if (hint) {
+      hint.textContent = open
+        ? "Click to hide details ▴"
+        : "Click to view details ▾";
+    }
+  };
+
+  const applyFilter = (selectedFilter) => {
+    const normalized = (selectedFilter || "all").toLowerCase().trim();
+
+    filterButtons.forEach((btn) => {
+      const btnFilter = (btn.dataset.filter || "").toLowerCase().trim();
+      const isSelected = btnFilter === normalized;
+      btn.classList.toggle("active", isSelected);
+      btn.setAttribute("aria-pressed", String(isSelected));
+    });
+
+    projectCards.forEach((card) => {
+      const cardCat = (card.dataset.category || "").toLowerCase().trim();
+      const matches = normalized === "all" || cardCat === normalized;
+
+      card.style.display = matches ? "" : "none";
+      if (!matches) {
+        setCardState(card, false);
+      }
+    });
+  };
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      applyFilter(btn.dataset.filter);
+    });
+  });
+
+  projectCards.forEach((card) => {
+    setCardState(card, false);
+
+    card.addEventListener("click", (event) => {
+      if (event.target.closest("a, button")) return;
+
+      const willOpen = !card.classList.contains("is-open");
+      projectCards.forEach((otherCard) => {
+        if (otherCard !== card) {
+          setCardState(otherCard, false);
+        }
+      });
+      setCardState(card, willOpen);
+    });
+  });
+
+  applyFilter("all");
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const colLeft = document.getElementById("project-col-left");
+  const colRight = document.getElementById("project-col-right");
+  const filterButtons = Array.from(
+    document.querySelectorAll(".filters .filter[data-filter]")
+  );
+  const allCards = Array.from(document.querySelectorAll("#project-grid .card"));
+
+  let refillTimeout = null;
+
+  const setCardOpen = (card, open) => {
+    card.classList.toggle("is-open", open);
+    const hint = card.querySelector(".expand-hint");
+    if (hint) {
+      hint.textContent = open
+        ? "Click to hide details ▴"
+        : "Click to view details ▾";
+    }
+  };
+
+  const refillColumns = () => {
+    if (!colLeft || !colRight) return;
+
+    const visibleCards = allCards.filter(
+      (card) => card.style.display !== "none"
+    );
+
+    if (window.innerWidth <= 768) {
+      visibleCards.forEach((card) => colLeft.appendChild(card));
+      return;
+    }
+
+    visibleCards.forEach((card) => {
+      if (colLeft.offsetHeight <= colRight.offsetHeight) {
+        colLeft.appendChild(card);
+      } else {
+        colRight.appendChild(card);
+      }
+    });
+  };
+
+  const scheduleRefill = (delay = 340) => {
+    if (refillTimeout) clearTimeout(refillTimeout);
+    refillTimeout = setTimeout(refillColumns, delay);
+  };
+
+  const filterCards = (filterValue) => {
+    const target = (filterValue || "all").toLowerCase().trim();
+
+    filterButtons.forEach((btn) => {
+      const val = (btn.dataset.filter || "").toLowerCase().trim();
+      const active = val === target;
+      btn.classList.toggle("active", active);
+      btn.setAttribute("aria-pressed", String(active));
+    });
+
+    allCards.forEach((card) => {
+      const cat = (card.dataset.category || "").toLowerCase().trim();
+      const show = target === "all" || cat === target;
+      card.style.display = show ? "" : "none";
+      if (!show) setCardOpen(card, false);
+    });
+
+    scheduleRefill(0);
+  };
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => filterCards(btn.dataset.filter));
+  });
+
+  allCards.forEach((card) => {
+    setCardOpen(card, false);
+
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("a, button")) return;
+
+      const nextState = !card.classList.contains("is-open");
+      allCards.forEach((other) => {
+        if (other !== card) setCardOpen(other, false);
+      });
+      setCardOpen(card, nextState);
+      scheduleRefill(340);
+    });
+  });
+
+  window.addEventListener("resize", () => scheduleRefill(120));
+  filterCards("all");
+});
+});

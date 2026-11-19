@@ -474,76 +474,150 @@ p {
   display: none !important;
 }
 
-#project-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-auto-flow: dense;
-  gap: 16px;
-  align-items: start;
-}
-
-#project-grid .card.featured {
-  grid-column: span 2;
-  background: linear-gradient(145deg, var(--panel), var(--bg));
-}
-
-#project-grid .card.featured:hover,
-#project-grid .card.featured.is-expanded {
-  grid-row: span 3;
-}
-
-#project-grid .card:not(.featured) {
-  grid-column: span 1;
-}
-
+/* --- Accordion Click-to-Expand with Smooth Grid Animation --- */
 #project-grid .card {
   cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 0.3s ease,
-              box-shadow 0.3s ease;
 }
 
-#project-grid .card:hover,
-#project-grid .card.is-expanded {
-  transform: translateY(-4px) scale(1.015);
-  border-color: var(--accent);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-  z-index: 2;
-}
-
-.expand-hint {
-  display: inline-block;
-  margin-top: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent);
-  transition: opacity 0.25s ease;
-}
-
-.card:hover .expand-hint,
-.card.is-expanded .expand-hint {
-  opacity: 0;
-  height: 0;
-  margin: 0;
-  overflow: hidden;
-}
-
-.card-details {
+/* မနှိပ်ထားချိန်တွင် Details ကို 0fr ဖြင့် ပိတ်ထားမည် */
+#project-grid .card-details {
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
-  transition: grid-template-rows 0.38s cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 0.3s ease;
+  margin-top: 0;
+  transition:
+    grid-template-rows 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+    opacity 0.25s ease,
+    margin-top 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.card-details-inner {
+#project-grid .card-details-inner {
   overflow: hidden;
+  min-height: 0;
 }
 
-.card:hover .card-details,
-.card.is-expanded .card-details {
+/* Click နှိပ်ပြီး .is-open ဖြစ်သွားချိန်တွင် ချောမွေ့စွာ ပွင့်ထွက်လာမည် */
+#project-grid .card.is-open .card-details {
   grid-template-rows: 1fr;
   opacity: 1;
+  margin-top: 12px;
+}
+
+/* Hover လုပ်ရုံဖြင့် Details မပွင့်စေရန် သေချာထိန်းချုပ်ခြင်း */
+#project-grid .card:not(.is-open):hover .card-details {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  margin-top: 0;
+}
+
+/* --- Top-Right MPT PNG Logo & Index x GeNew PNG Logo Styling --- */
+#project-grid .mpt-card {
+  position: relative;
+}
+
+.card-top-logo {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  height: 28px;
+  width: auto;
+  max-width: 76px;
+  object-fit: contain;
+  border-radius: 6px;
+  z-index: 2;
+}
+
+/* အပေါ်ထောင့် Logo နဲ့ Title မထပ်စေရန် ညာဘက် padding ထားရှိခြင်း */
+#project-grid .mpt-card h3 {
+  padding-right: 84px;
+}
+
+.org.org-collab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.collab-logos {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.collab-logo-img {
+  height: 28px;
+  width: auto;
+  max-width: 100px;
+  object-fit: contain;
+  display: block;
+  border-radius: 5px;
+}
+
+.collab-x {
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* --- Top-Right Logo & Smooth Accordion Expand/Collapse --- */
+#project-grid .card {
+  position: relative;
+  cursor: pointer;
+}
+
+/* --- Top-Right Logo Sizing & Aspect Ratio Fix --- */
+.card-top-logo {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  height: 30px;
+  width: auto;
+  max-width: 110px;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* i-Link logo ကို ပိုရှင်းလင်းပြတ်သားစေရန် အရွယ်အစား ညှိခြင်း */
+.card-top-logo.logo-ilink {
+  height: 38px;
+  max-width: 120px;
+}
+
+/* အပေါ်ထောင့် Logo နဲ့ Title စာသား မထပ်စေရန် ညာဘက် padding ပေးခြင်း */
+#project-grid .has-top-logo h3,
+#project-grid .mpt-card h3 {
+  padding-right: 110px;
+}
+
+/* မနှိပ်ထားချိန် ပိတ်ထားမည် */
+#project-grid .card .card-details {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  margin-top: 0;
+  transition:
+    grid-template-rows 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+    opacity 0.25s ease,
+    margin-top 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#project-grid .card .card-details-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* .is-open ဖြစ်သွားချိန် ချောမွေ့စွာ ပွင့်ထွက်လာမည် */
+#project-grid .card.is-open .card-details {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 12px;
 }
 
 /* --- Topology Diagrams --- */
@@ -799,10 +873,36 @@ p {
   }
 }
 
-@media (max-width: 560px) {
+/* --- 2-Column Split on Desktop, 1-Column on Small Screen --- */
+#project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+#project-grid .card {
+  width: 100%;
+  min-width: 0;
+  position: relative;
+  cursor: pointer;
+}
+
+/* MPT နဲ့ Core BNG ကို တစ်တန်းအပြည့် ထားချင်ရင် full-span class သုံးနိုင်သည် */
+#project-grid .card.full-span {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
   #project-grid {
     grid-template-columns: 1fr;
   }
+
+  #project-grid .card.full-span {
+    grid-column: auto;
+  }
+}
+  
   #project-grid .card.featured,
   #project-grid .card:not(.featured) {
     grid-column: span 1;
@@ -1061,16 +1161,18 @@ body.light-mode {
   --ink-muted: #475569; /* ဒုတိယစာသားအရောင် (Medium Slate) */
   --line: #e2e8f0;      /* ဘောင်မျဉ်းအရောင် */
   --accent: #2563eb;    /* အဓိက အလေးပေးအရောင် (Vibrant Blue) */
-}
-
-/* Light mode ဖွင့်ချိန်တွင် Background နှင့် Text များကို အပြည့်အဝ အစားထိုးခြင်း */
-body.light-mode {
   background-color: var(--bg) !important;
   color: var(--ink) !important;
 }
 
-/* Light mode ရှိ ကတ်ပြားများနှင့် ပန်နယ်များအတွက် ပိုမိုသပ်ရပ်သော ပုံစံ (မလိုဘဲ ပေါ်နေသော မျဉ်းများကို ဖယ်ရှားရန် border ကို ရှင်းလင်းခြင်း) */
-body.light-mode .block,
+/* Section block များကို box ကြီးလို ဘောင်မခတ်ဘဲ သန့်ရှင်းစွာ ထားရှိခြင်း */
+body.light-mode .block {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Light mode ရှိ ကတ်ပြားများနှင့် ပန်နယ်များအတွက် ပိုမိုသပ်ရပ်သော ပုံစံ */
 body.light-mode .card,
 body.light-mode .panel {
   background-color: var(--panel) !important;
@@ -1100,26 +1202,35 @@ body.light-mode .section-divider {
   font-weight: normal !important;
 }
 
-/* --- ::1 Circular Badge Styling --- */
-.brand-router-circle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: 2px solid var(--accent);
-  border-radius: 50%;
-  color: var(--accent);
-  font-family: monospace;
-  font-size: 0.85rem;
-  font-weight: bold;
-  flex-shrink: 0;
-  background-color: var(--panel);
-  transition: transform 0.3s ease, background-color 0.3s ease;
+/* --- Brand Link Layout (No Underline) --- */
+.brand.brand-script {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important; /* ပုံနဲ့ "Hello Friend!" စာသားကြား အကွာအဝေး */
+  text-decoration: none !important;
+  border-bottom: none !important;
 }
 
-.brand-router-circle:hover {
-  transform: scale(1.05);
+.brand.brand-script:hover,
+.brand.brand-script:focus {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+/* --- Standalone Rotating Image Icon --- */
+.brand-custom-img {
+  width: 34px; /* လိုအပ်သလို အရွယ်အစား ပြောင်းနိုင်သည် */
+  height: 34px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+  /* ထိလိုက်တဲ့အခါ ချောမွေ့စွာ လည်သွားစေရန် */
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Brand link (သို့မဟုတ် ပုံ) ကို ထိလိုက်တဲ့အခါ 360 ဒီဂရီ လည်သွားမည် */
+.brand.brand-script:hover .brand-custom-img {
+  transform: rotate(360deg);
 }
 
 /* --- Brand & Home Link Styling --- */
@@ -1162,4 +1273,62 @@ body.light-mode .section-divider {
   transform: rotate(360deg);
   background-color: var(--accent);
   color: var(--panel);
+}
+
+/* --- Home Icon Circular Badge Styling & Animation --- */
+.brand-router-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  color: var(--accent);
+  flex-shrink: 0;
+  background-color: var(--panel);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease, color 0.3s ease;
+}
+
+.brand-router-circle svg {
+  display: block;
+}
+
+/* မောက်စ်တင်လိုက်ပါက အဝိုင်းနှင့် အိမ်ပုံစံ 360 ဒီဂရီ လည်သွားမည် */
+.brand.brand-script:hover .brand-router-circle {
+  transform: rotate(360deg);
+  background-color: var(--accent);
+  color: var(--panel);
+}
+
+.card-top-logo.logo-ach {
+  height: 32px;
+  max-width: 110px;
+}
+
+/* --- Clean Transparent ACH Logo Without White Box --- */
+.card-top-logo.logo-ach {
+  height: 30px;
+  width: auto;
+  max-width: 110px;
+  object-fit: contain;
+  display: block;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* --- Final Lab Row-by-Row Topology Layout --- */
+.project-visual.lab-row-visual {
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.lab-step-arrow {
+  color: var(--accent);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
 }

@@ -22,10 +22,10 @@
   <header>
     <div class="wrap nav">
   <a class="brand brand-script" href="#main">
-  <!-- Network ::1 Loopback Symbol in a Circle -->
-  <span class="brand-router-circle">::1</span>
+  <!-- Borderless Network Community Image Icon -->
+  <img src="network-icon.png" alt="Home Network Icon" class="brand-custom-img">
   <span>Hello Friend!</span>
-  </a>
+</a>
       <nav aria-label="Main navigation" class="links">
         <a href="#expertise">Expertise</a>
         <a href="#experience">Experience</a>
@@ -88,7 +88,7 @@
     <!-- Key Metrics -->
     <div class="metrics">
       <div class="metric">
-        <strong>Index Co., Ltd. (I-Link)</strong>
+        <strong>Index Co., Ltd.(I-Link)</strong>
         <span>Current Work</span>
       </div>
       <div class="metric">
@@ -96,7 +96,7 @@
         <span>Network engineering career</span>
       </div>
       <div class="metric">
-        <strong> 7 </strong>
+        <strong> 8 </strong>
         <span>Production projects highlighted</span>
       </div>
     </div>
@@ -208,193 +208,270 @@
         </article>
       </div>
     </section>
+
     <!-- Section 03: Projects -->
-    <section class="block" id="projects">
-      <h2>Engineering Projects</h2>
-      <div aria-label="Project categories" class="filters">
-        <button aria-pressed="true" class="filter" data-filter="all">All</button>
-        <button aria-pressed="false" class="filter" data-filter="isp">ISP &amp; core</button>
-        <button aria-pressed="false" class="filter" data-filter="enterprise">Enterprise</button>
-        <button aria-pressed="false" class="filter" data-filter="lab">Labs</button>
+<section class="block" id="projects">
+  <h2>Engineering Projects</h2>
+  <div aria-label="Project categories" class="filters">
+    <button aria-pressed="true" class="filter active" data-filter="all">All</button>
+    <button aria-pressed="false" class="filter" data-filter="isp">ISP Core &amp; Access</button>
+    <button aria-pressed="false" class="filter" data-filter="campus">Campus</button>
+    <button aria-pressed="false" class="filter" data-filter="sme">SME</button>
+    <button aria-pressed="false" class="filter" data-filter="lab">Labs</button>
+  </div>
+
+  <div id="project-grid">
+  <div class="project-col" id="project-col-left"></div>
+  <div class="project-col" id="project-col-right"></div>
+    <!-- MPT Access Network Modernization (ISP Core & Access) -->
+    <article class="card mpt-card" data-category="isp">
+      <img src="mpt.png" alt="MPT Logo" class="card-top-logo">
+      <h3>MPT access network modernization</h3>
+      <p>INDEX CO., LTD. · MPT access network modernization.</p>
+      <span class="expand-hint">Click to view details ▾</span>
+      <div class="card-details">
+        <div class="card-details-inner">
+          <p class="project-desc">
+            Configured GeNew OLTs to meet MPT’s required service specifications with thorough stability testing, and designed a dedicated NMS infrastructure using managed switches to integrate NMS servers into MPT’s existing architecture. Executed end-to-end OLT and ONU migrations across MPT exchange offices with minimal subscriber impact, prepared configuration and NMS documentation, delivered hands-on training to MPT operational teams, collaborated with R&amp;D on requested features, and provided ongoing post-migration support.
+          </p>
+          <div class="org org-collab-bar">
+            <div class="collab-logos">
+              <img src="index.png" alt="Index Logo" class="collab-logo-img">
+              <span class="collab-x" aria-hidden="true">×</span>
+              <img src="genew.png" alt="GeNew Logo" class="collab-logo-img">
+            </div>
+            <span class="muted-note">Index Collaboration GeNew</span>
+          </div>
+        </div>
       </div>
+    </article>
 
-      <div id="project-grid">
-        <!-- 1. Featured Project: Core BNG Router Migration -->
-        <article class="card featured" data-category="isp">
-          <div class="eyebrow">Featured / Production</div>
-          <h3>Core BNG Router Migration Project</h3>
-          <p>I-Link · Migrated 4,500+ PPPoE subscribers to dual hardware BNG routers.</p>
-          <span class="expand-hint">Hover or click to view details ▾</span>
-
-          <div class="card-details">
-            <div class="card-details-inner">
-              <p>Addressed peak-hour CPU bottlenecks by transitioning subscriber sessions onto redundant hardware BNG routers with RADIUS high availability.</p>
-              <div class="tags">
-                <span class="tag">Core Network</span>
-                <span class="tag">BNG</span>
-                <span class="tag">PPPoE</span>
-                <span class="tag">RADIUS HA</span>
-              </div>
-              <div aria-label="Conceptual BNG migration topology illustration" class="bng-topology">
-                <div class="topo-top">
-                  <span class="node">Core Network</span>
-                  <span class="arrow">↕</span>
-                </div>
-                <div class="topo-row">
-                  <span class="node">PPPoE Users</span>
-                  <span class="arrow">→</span>
-                  <span class="node">OLT</span>
-                  <span class="arrow">→</span>
-                  <span class="node">Dual BNG</span>
-                  <span class="arrow">↔</span>
-                  <span class="node">RADIUS HA</span>
-                </div>
-              </div>
-              <p class="muted-note">Conceptual illustration — not the production topology.</p>
+    <!-- Core BNG Router Migration Project (ISP Core & Access) -->
+    <article class="card featured has-top-logo" data-category="isp">
+      <img src="ilink-logo.png" alt="i-Link Logo" class="card-top-logo logo-ilink">
+      <h3>Core BNG Router Migration Project</h3>
+      <p>I-Link · Migrated 4,500+ PPPoE subscribers to dual hardware BNG routers.</p>
+      <span class="expand-hint">Click to view details ▾</span>
+      <div class="card-details">
+        <div class="card-details-inner">
+          <p>Addressed peak-hour CPU bottlenecks by transitioning subscriber sessions onto redundant hardware BNG routers with RADIUS high availability.</p>
+          <div class="tags">
+            <span class="tag">Core Network</span>
+            <span class="tag">BNG</span>
+            <span class="tag">PPPoE</span>
+            <span class="tag">RADIUS HA</span>
+          </div>
+          <div aria-label="Conceptual BNG migration topology illustration" class="bng-topology">
+            <div class="topo-top">
+              <span class="node">Core Network</span>
+              <span class="arrow">↕</span>
+            </div>
+            <div class="topo-row">
+              <span class="node">PPPoE Users</span>
+              <span class="arrow">→</span>
+              <span class="node">OLT</span>
+              <span class="arrow">→</span>
+              <span class="node">Dual BNG</span>
+              <span class="arrow">↔</span>
+              <span class="node">RADIUS HA</span>
             </div>
           </div>
-        </article>
+          <p class="muted-note">Conceptual illustration — not the production topology.</p>
+        </div>
+      </div>
+    </article>
 
-        <!-- 2. Mingalar Taung Nyunt PoP Site Expansion -->
-        <article class="card featured" data-category="isp">
-          <div class="num">CORE &amp; ACCESS / PRODUCTION</div>
-          <h3>Mingalar Taung Nyunt PoP site expansion</h3>
-          <p>i-Link · New PoP site deployment with Backbone Router and dual GPON OLTs.</p>
-          <span class="expand-hint">Hover or click to view details ▾</span>
+    <!-- South Dagon Service Area Extend Project (ISP Core & Access - ဘယ်ဘက်) -->
+    <article class="card has-top-logo" data-category="isp">
+      <img src="ilink-logo.png" alt="i-Link Logo" class="card-top-logo logo-ilink">
+      <h3>South Dagon Service Area Extend Project</h3>
+      <p>I-Link · New township expansion with OLT deployment, VLAN setup, Core integration, and NOC training.</p>
+      <span class="expand-hint">Click to view details ▾</span>
+      <div class="card-details">
+        <div class="card-details-inner">
+          <p class="project-desc">
+            Coordinated with the OSP team on FAT infrastructure rollout scope to determine the appropriate OLT model, deployed a new OLT for the new township with dedicated township VLANs, and integrated the site into the Core network. After completing thorough testing and verifying stability, cut over to live production and conducted NOC training on ONU configuration before formal operational handover.
+          </p>
+          <div class="tags">
+            <span class="tag">OSP &amp; FAT Planning</span>
+            <span class="tag">New OLT</span>
+            <span class="tag">Customer VLANs</span>
+            <span class="tag">Core Integration</span>
+            <span class="tag">NOC Training</span>
+          </div>
+          <div aria-label="Conceptual South Dagon expansion flow illustration" class="project-visual">
+            <span class="node">OSP FAT Scope</span>
+            <span class="arrow">→</span>
+            <span class="node">New OLT</span>
+            <span class="arrow">→</span>
+            <span class="node">Core Network</span>
+          </div>
+        </div>
+      </div>
+    </article>
 
+    <!-- Tamwe PoP Site Expansion (ISP Core & Access - ညာဘက်) -->
+    <article class="card featured has-top-logo" data-category="isp">
+      <img src="ilink-logo.png" alt="i-Link Logo" class="card-top-logo logo-ilink">
+      <h3>Tamwe PoP Site Expansion</h3>
+      <p>I-Link · New PoP site deployment with Backbone Router and dual GPON OLTs.</p>
+      <span class="expand-hint">Click to view details ▾</span>
+      <div class="card-details">
+        <div class="card-details-inner">
+          <p class="project-desc">
+            Installed a Backbone Router connected to the Main Office Core Switch (CSW) via redundant dual uplinks and interconnected with the Core network to support Downtown service delivery. Configured dedicated VLAN assignments across the transport and access paths, and integrated two GPON OLTs to expand broadband coverage throughout the Downtown area.
+          </p>
+          <div class="tags">
+            <span class="tag">Backbone Router</span>
+            <span class="tag">Dual Uplink</span>
+            <span class="tag">2x GPON OLT</span>
+            <span class="tag">PoP Deployment</span>
+          </div>
+          <div aria-label="Conceptual PoP site topology illustration" class="project-visual">
+            <span class="node">Main Office</span>
+            <span class="arrow">⇄</span>
+            <span class="node">Backbone Router</span>
+            <span class="arrow">→</span>
+            <span class="node">2x OLTs (Downtown)</span>
+          </div>
+          <p class="muted-note">Conceptual illustration — not the production topology.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- IAM International School (Campus - ဘယ်ဘက်) -->
+    <article class="card has-top-logo" data-category="campus">
+      <img src="ilink-logo.png" alt="i-Link Logo" class="card-top-logo logo-ilink">
+      <h3>IAM International School</h3>
+      <p>I-Link · Full campus network infrastructure deployment.</p>
+      <span class="expand-hint">Click to view details ▾</span>
+      <div class="card-details">
+        <div class="card-details-inner">
+          <p>Designed and deployed campus-wide connectivity using TP-Link Omada gateways, managed switches, cloud controllers, and high-density wireless APs.</p>
+          <div class="tags">
+            <span class="tag">TP-Link Omada</span>
+            <span class="tag">Campus Wi-Fi</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- University of Economic (Ywatha Gyi) (Campus - ညာဘက်) -->
+    <article class="card has-top-logo" data-category="campus">
+      <img src="gn-logo.png" alt="Global Net Logo" class="card-top-logo">
+      <h3>University of Economic (Ywatha Gyi)</h3>
+      <p>Global Net · Ruijie enterprise campus network rollout.</p>
+      <span class="expand-hint">Click to view details ▾</span>
+      <div class="card-details">
+        <div class="card-details-inner">
+          <p>Implemented Ruijie enterprise gateways, distribution switches, and campus-wide wireless access points for academic and administrative buildings.</p>
+          <div class="tags">
+            <span class="tag">Ruijie</span>
+            <span class="tag">Switching</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Jazz Spa (SME - ဘယ်ဘက်) -->
+    <article class="card has-top-logo" data-category="sme">
+      <img src="ilink-logo.png" alt="i-Link Logo" class="card-top-logo logo-ilink">
+      <h3>Jazz Spa</h3>
+      <p>I-Link · Commercial routing and wireless deployment.</p>
+      <span class="expand-hint">Click to view details ▾</span>
+      <div class="card-details">
+        <div class="card-details-inner">
+          <p>Configured gateway routing, VLAN segmentation, and seamless wireless access point coverage for facility operations and guest connectivity.</p>
+          <div class="tags">
+            <span class="tag">TP-Link</span>
+            <span class="tag">Router, PoE Switch, Wireless AP</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- KL Seven Car Sales Center (SME - ညာဘက်) -->
+    <article class="card has-top-logo" data-category="sme">
+      <img src="gn-logo.png" alt="Global Net Logo" class="card-top-logo">
+      <h3>KL Seven Car Sales Center</h3>
+      <p>Global Net · Showroom gateway and Wi-Fi setup.</p>
+      <span class="expand-hint">Click to view details ▾</span>
+      <div class="card-details">
+        <div class="card-details-inner">
+          <p>Deployed TP-Link enterprise routers and wireless access points to support showroom operations, CCTV, and customer Wi-Fi.</p>
+          <div class="tags">
+            <span class="tag">TP-Link</span>
+            <span class="tag">Router, PoE Switch, Wireless AP and CCTV</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Assignment (Labs) -->
+    <article class="card has-top-logo" data-category="lab">
+      <img src="ach.png" alt="ACH Logo" class="card-top-logo logo-ach">
+      <h3>Final Lab Assignment</h3>
+      <p>ACH · CCNP ENCOR 350-401 Final Lab — routing, switching, VPN &amp; WAN design.</p>
+      <span class="expand-hint">Click to view details ▾</span>
+      <div class="card-details">
+        <div class="card-details-inner">
+          <p class="project-desc">
+            Completed the CCNP ENCOR 350-401 final lab integrating Branch &amp; Home offices over Internet and GRE-o-IPSec VPNs with Regional Office (BGP AS 43001, OSPF Area 0) and HQ (BGP AS 43002, EIGRP AS 500), including VLANs, trunks, EtherChannel/Po, and end-to-end reachability verification.
+          </p>
+          <div class="tags">
+            <span class="tag">CCNP ENCOR</span>
+            <span class="tag">BGP / OSPF / EIGRP</span>
+            <span class="tag">GRE-o-IPSec VPN</span>
+            <span class="tag">Switching &amp; VLANs</span>
+          </div>
+          <div aria-label="Conceptual CCNP ENCOR final lab topology illustration" class="project-visual lab-row-visual">
+            <div class="topo-row">
+              <span class="node">Regional (OSPF)</span>
+              <span class="arrow">⇄</span>
+              <span class="node">Internet &amp; VPN</span>
+              <span class="arrow">⇄</span>
+              <span class="node">HQ (EIGRP / BGP)</span>
+            </div>
+
+            <div class="lab-step-arrow" aria-hidden="true">↓</div>
+
+            <div class="topo-row">
+              <span class="node">Home / VPN</span>
+            </div>
+          </div>
+    </article>
+
+    <!-- I-Link Core Redundancy & Capacity Upgrade Assignment (Labs) -->
+        <article class="card has-top-logo" data-category="lab">
+          <img src="ilink-logo.png" alt="i-Link Logo" class="card-top-logo logo-ilink">
+          <h3>I-Link Core Network Upgrade Assignment</h3>
+          <p>I-Link · Core HA with Dual NAT ECMP, CSW StackWise Virtual, ASW vPC &amp; LACP.</p>
+          <span class="expand-hint">Click to view details ▾</span>
           <div class="card-details">
             <div class="card-details-inner">
-              <p>Installed a Backbone Router connected to the Main Office via redundant dual uplinks, integrated with two GPON OLTs to expand broadband coverage across the Downtown area.</p>
+              <p class="project-desc">
+                Designed a lab architecture addressing growing PoP count and subscriber traffic on I-Link infrastructure by enforcing device redundancy and high availability (HA) at the Core layer. Paired dual NAT devices with ECMP load sharing, deployed dual Core Switches (CSW) in StackWise Virtual, connected Access Switches (ASW) via vPC, and scaled LACP link capacity to handle higher throughput without single points of failure.
+              </p>
               <div class="tags">
-                <span class="tag">Backbone Router</span>
-                <span class="tag">Dual Uplink</span>
-                <span class="tag">2x GPON OLT</span>
-                <span class="tag">PoP Deployment</span>
+                <span class="tag">Core HA</span>
+                <span class="tag">Dual NAT ECMP</span>
+                <span class="tag">StackWise Virtual</span>
+                <span class="tag">vPC</span>
+                <span class="tag">LACP</span>
               </div>
-              <div aria-label="Conceptual PoP site topology illustration" class="project-visual">
-                <span class="node">Main Office (CSW)</span>
+              <div aria-label="Conceptual I-Link core redundancy and LACP topology illustration" class="project-visual">
+                <span class="node">Dual NAT (ECMP)</span>
                 <span class="arrow">⇄</span>
-                <span class="node">Dual Uplink</span>
-                <span class="arrow">→</span>
-                <span class="node">Backbone Router</span>
-                <span class="arrow">→</span>
-                <span class="node">2x OLTs (Downtown)</span>
+                <span class="node">CSW (StackWise Virtual)</span>
+                <span class="arrow">⇄</span>
+                <span class="node">ASW (vPC)</span>
               </div>
-              <p class="muted-note">Conceptual illustration — not the production topology.</p>
+              <p class="muted-note">Lab &amp; architectural design assignment — conceptual illustration.</p>
             </div>
           </div>
         </article>
-
-        <!-- 3. MPT Access Network Modernization -->
-        <article class="card" data-category="isp">
-          <div class="num">ACCESS / PRODUCTION</div>
-          <h3>MPT access network modernization</h3>
-          <p>INDEX CO., LTD. · GeNew OLT/ONU deployment and migration project.</p>
-          <span class="expand-hint">Hover or click to view details ▾</span>
-
-          <div class="card-details">
-            <div class="card-details-inner">
-              <p>October 2025 – Present (project affiliation as listed). GeNew OLT testing, NMS infrastructure setup, OLT/ONU migrations, documentation, training, and post-migration support.</p>
-              <div class="org">
-                <span aria-hidden="true" class="orgmark">MPT</span>
-                <span aria-hidden="true" class="orgmark">IDX</span>
-                <span class="muted-note">Project affiliation / client</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 4. IAM International School -->
-        <article class="card" data-category="enterprise">
-          <div class="num">ENTERPRISE</div>
-          <h3>IAM International School</h3>
-          <p>i-Link · Full campus network infrastructure deployment.</p>
-          <span class="expand-hint">Hover or click to view details ▾</span>
-
-          <div class="card-details">
-            <div class="card-details-inner">
-              <p>Designed and deployed campus-wide connectivity using TP-Link Omada gateways, managed switches, cloud controllers, and high-density wireless APs.</p>
-              <div class="tags">
-                <span class="tag">TP-Link Omada</span>
-                <span class="tag">Campus Wi-Fi</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 5. Jazz Spa -->
-        <article class="card" data-category="enterprise">
-          <div class="num">ENTERPRISE</div>
-          <h3>Jazz Spa</h3>
-          <p>i-Link · Commercial routing and wireless deployment.</p>
-          <span class="expand-hint">Hover or click to view details ▾</span>
-
-          <div class="card-details">
-            <div class="card-details-inner">
-              <p>Configured gateway routing, VLAN segmentation, and seamless wireless access point coverage for facility operations and guest connectivity.</p>
-              <div class="tags">
-                <span class="tag">Routing</span>
-                <span class="tag">Wireless AP</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 6. University of Economic (Ywatha Gyi) -->
-        <article class="card" data-category="enterprise">
-          <div class="num">CAMPUS</div>
-          <h3>University of Economic (Ywatha Gyi)</h3>
-          <p>Global Net · Ruijie enterprise campus network rollout.</p>
-          <span class="expand-hint">Hover or click to view details ▾</span>
-
-          <div class="card-details">
-            <div class="card-details-inner">
-              <p>Implemented Ruijie enterprise gateways, distribution switches, and campus-wide wireless access points for academic and administrative buildings.</p>
-              <div class="tags">
-                <span class="tag">Ruijie</span>
-                <span class="tag">Switching</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 7. KL Seven Car Sales Center -->
-        <article class="card" data-category="enterprise">
-          <div class="num">ENTERPRISE</div>
-          <h3>KL Seven Car Sales Center</h3>
-          <p>Global Net · Showroom gateway and Wi-Fi setup.</p>
-          <span class="expand-hint">Hover or click to view details ▾</span>
-
-          <div class="card-details">
-            <div class="card-details-inner">
-              <p>Deployed TP-Link enterprise routers and wireless access points to support showroom operations, CCTV, and customer Wi-Fi.</p>
-              <div class="tags">
-                <span class="tag">TP-Link</span>
-                <span class="tag">Enterprise</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 8. Advanced Enterprise & ISP Lab -->
-        <article class="card" data-category="lab">
-          <div class="num">LAB / SIMULATION</div>
-          <h3>Advanced enterprise &amp; ISP lab</h3>
-          <p>ACH Network Professional · CCNP multi-site capstone lab.</p>
-          <span class="expand-hint">Hover or click to view details ▾</span>
-
-          <div class="card-details">
-            <div class="card-details-inner">
-              <p>Simulated two redundant ISP backbones interconnected with two multi-branch enterprise networks utilizing BGP, OSPF, and GRE over IPsec VPN tunnels.</p>
-              <div class="tags">
-                <span class="tag">BGP / OSPF</span>
-                <span class="tag">GRE over IPsec</span>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
+  </div>
+</section>
 
     <!-- Vendors Section -->
     <section class="block" id="vendors">
